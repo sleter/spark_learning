@@ -74,7 +74,7 @@ moviePairRatings = moviePairs.groupByKey()
 # Can now compute similarities.
 moviePairSimilarities = moviePairRatings.mapValues(computeCosineSimilarity).cache()
 
-# Save the results if desired
+# Save the results
 #moviePairSimilarities.sortByKey()
 #moviePairSimilarities.saveAsTextFile("movie-sims")
 
