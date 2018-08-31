@@ -1,4 +1,4 @@
-import sys
+import sys, pickle
 import numpy as np
 from pyspark import SparkConf, SparkContext
 from pyspark.mllib.recommendation import ALS, Rating
@@ -59,5 +59,6 @@ dt = np.dtype([('id', np.int32), ('predictions', np.float64, (10,))])
 userFeatureNumpyArray = np.array(userFeatureNumpyArray, dtype=dt)
 itemFeatureNumpyArray = np.array(productFeatureNumpyArray, dtype=dt)
 
-print(userFeatureNumpyArray[:4])
-print(itemFeatureNumpyArray[:3])
+pickle_output = {'userFeature': userFeatureNumpyArray, 'itemFeature': itemFeatureNumpyArray}
+
+pickle.dump(pickle_output, open("modelals.p","wb"))
